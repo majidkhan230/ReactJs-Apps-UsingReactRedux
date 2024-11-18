@@ -23,7 +23,7 @@ const Drawer = ({ setOpenDrawer }) => {
 
   return (
     <div className="fixed top-0 right-0 bottom-0 left-auto bg-black bg-opacity-50 z-50">
-      <div className="lg:w-96 w-full bg-white h-full p-4 overflow-y-auto">
+      <div className="lg:max-w-96  w-full bg-white h-full p-4 scroll-mx-10 overflow-y-auto">
         <IoCloseCircleOutline
           onClick={() => setOpenDrawer(false)}
           className="text-2xl text-gray-800 cursor-pointer"
@@ -38,7 +38,7 @@ const Drawer = ({ setOpenDrawer }) => {
             addtocart.map((item, index) => (
               <div
                 key={index}
-                className="bg-gray-100 rounded-lg shadow-lg p-4 mb-4 flex relative"
+                className="bg-gray-100  rounded-lg shadow-lg p-4 mb-4 flex relative"
               >
                 <div onClick={()=>handleDeleteIcon(item)} className="delete text-2xl absolute  hover:cursor-pointer p-1 top-0 right-0 border-2 rounded-full bg-red-500" ><MdDelete/></div>
                 <div className="left w-2/3">
@@ -50,7 +50,7 @@ const Drawer = ({ setOpenDrawer }) => {
                     {item.description.slice(0, 30)}
                   </p>
                   <div className="mt-4 flex justify-between items-center">
-                    <span className="text-lg font-bold text-gray-900">
+                    <span className="text-lg font-bold ">
                       ${item.price}
                     </span>
                   </div>

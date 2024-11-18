@@ -6,21 +6,19 @@ import { useDispatch, useSelector } from "react-redux";
 
 function Home() {
   // const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  
-const dispatch = useDispatch()
-  const handleAddToCart =(item)=>{
-      dispatch({
-        type:"addtocart",
-        payload:item
-      })
-}
+  const dispatch = useDispatch();
+  const handleAddToCart = (item) => {
+    dispatch({
+      type: "addtocart",
+      payload: item,
+    });
+  };
 
-console.log(useSelector((state)=>state))
-const {allproducts} = useSelector((state)=>state)
-console.log(allproducts)
-
-
+  console.log(useSelector((state) => state));
+  const { allproducts } = useSelector((state) => state);
+  console.log(allproducts);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -28,10 +26,11 @@ console.log(allproducts)
         const res = await axios.get("https://fakestoreapi.in/api/products");
         const data = res?.data?.products;
         // console.log(data.products)
+        setLoading(false);
         dispatch({
-          type:"allproducts",
+          type: "allproducts",
           payload: data,
-        })
+        });
       } catch (error) {
         console.log(error.message);
       }
@@ -40,13 +39,21 @@ console.log(allproducts)
   }, []);
 
   return (
-    <div className="grid grid-cols-4 mx-4 mt-4 ">
-      {allproducts.map((item, index) => {
-        return (
-        <Card key={index} item={item} handleAddToCart={handleAddToCart} />
-        );
-      })}
-    </div>
+    <>
+      {loading ? (
+        <div id="loading">
+          <span>Loading</span>
+        </div>
+      ) : (
+        <div className="grid grid-cols-4 mx-4 mt-4 ">
+          {allproducts.map((item, index) => {
+            return (
+              <Card key={index} item={item} handleAddToCart={handleAddToCart} />
+            );
+          })}
+        </div>
+      )}
+    </>
   );
 }
 
