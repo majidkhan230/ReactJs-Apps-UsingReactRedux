@@ -45,7 +45,7 @@ function Home() {
           <span>Loading</span>
         </div>
       ) : (
-        <div className="grid grid-cols-4 mx-4 mt-4 ">
+        <div className="grid md:grid-cols-4 sm:grid-col-2  mx-4 mt-4 ">
           {allproducts.map((item, index) => {
             return (
               <Card key={index} item={item} handleAddToCart={handleAddToCart} />
